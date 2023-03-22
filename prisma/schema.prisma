@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+  generator client {
+    provider = "prisma-client-js"
+  }
+
+  generator pothos {
+    provider = "prisma-pothos-types"
+  }
+
+  datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+  }
+
+model Resources {
+  id   String @id
+  name String?
+  parentIndex Int? @default(0)
+  events Events[]
+}
+
+model Events {
+  id         String @id
+  name       String?
+  startDate  DateTime?
+  endDate    DateTime?
+  resourceId String?
+  resizable  Boolean?  @default(true)
+  draggable  Boolean?  @default(true)
+  cls        String?
+  duration   Float?
+  durationUnit String?
+  parentIndex Int?
+  orderedParentIndex Int? 
+  exceptionDates String?
+  readOnly  Boolean?  @default(false)
+  allDay  Boolean?  @default(false)
+  recurrenceCombo String? @default("none")
+  
+  resource Resources? @relation(fields: [resourceId], references: [id], onDelete: SetNull)
+}
