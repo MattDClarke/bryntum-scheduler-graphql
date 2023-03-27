@@ -24,6 +24,7 @@ export const builder = new SchemaBuilder<{
 // 5.
 builder.queryType({
   fields: (t) => ({
+    // DONT NEED
     ok: t.boolean({
       resolve: () => true,
     }),

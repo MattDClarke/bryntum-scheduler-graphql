@@ -7,7 +7,7 @@ import {
   DeleteEventMutation,
   UpdateEventMutation,
   AllDataQuery,
-} from "@/helpers/graphqlOperations"; // Import your operations from the appropriate file
+} from "@/helpers/graphqlOperations";
 
 export function useQueryAndMutations() {
   const refetchQueries = [{ query: AllDataQuery }];
